@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
   
   constructor(
     private activatedRoute: ActivatedRoute,
-    private usersService: UsersService,
+    public usersService: UsersService,
     private workmeterService: WorkmeterService,
     private toastService: ToastService) {
   }

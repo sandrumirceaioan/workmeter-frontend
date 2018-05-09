@@ -44,7 +44,7 @@
   <div class="list-container">
         <img src="./assets/spinner.gif" *ngIf="loader" class="spinner">
         <ul class="lists-list">
-        <li *ngFor="let list of lists | listsFilter:searchTerm">
+        <li *ngFor="let list of lists">
             <div class="list-body">
                     <div class="col-xs-10 text-left">
                         <span>{{list.listName}} - <small><i>{{list.listDescription}}</i></small></span>
