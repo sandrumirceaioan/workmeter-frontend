@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  @Input() userAccess: number;
+  @Input() userAccess: any;
   active: string;
   constructor(private router: Router) {
   }
