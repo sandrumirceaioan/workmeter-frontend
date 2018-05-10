@@ -22,9 +22,8 @@ var apiForwardingUrl = "https://workmeter-backend.herokuapp.com";
 
 var server = express();
 server.get('/*', function(req,res) {
-    
     res.sendFile(path.join(__dirname+'/dist/index.html'));
-    });
+});
 
 var apiProxy = httpProxy.createProxyServer();
 console.log('Forwarding API requests to ' + apiForwardingUrl);
