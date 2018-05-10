@@ -20,7 +20,7 @@ var express = require('express'),
     app = express(),
     path = require('path');
 
-    app.use(proxy('/api', { target: 'https://workmeter-backend.herokuapp.com/api', changeOrigin: false }));
+    app.use(proxy('/api', { target: 'https://workmeter-backend.herokuapp.com', changeOrigin: true }));
     app.use(express.static(path.join(__dirname, 'dist')));
     app.get('*', function (req, res) {
         res.sendFile(__dirname + '/dist/index.html');
