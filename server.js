@@ -20,12 +20,10 @@ var express = require('express'),
     app = express(),
     path = require('path');
 
-setTimeout(() => {
-    app.use(proxy('/api', { target: 'https://workmeter-backend.herokuapp.com', changeOrigin: false }));
+    app.use(proxy('/api', { target: 'https://workmeter-backend.herokuapp.com/api', changeOrigin: false }));
     app.use(express.static(path.join(__dirname, 'dist')));
     app.get('*', function (req, res) {
         res.sendFile(__dirname + '/dist/index.html');
     });
     var server = require('http').createServer(app);
     server.listen(process.env.PORT || 8080);
-}, 3000);
