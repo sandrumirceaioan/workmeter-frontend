@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "https://workmeter-backend.herokuapp.com",
+      "secure": false
+    }
+  }
