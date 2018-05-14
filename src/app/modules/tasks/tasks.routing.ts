@@ -7,6 +7,7 @@ import { ProjectsResolve } from '../projects/projects.resolve';
 import { ListsResolve } from '../lists/lists.resolve';
 import { UsersResolve } from '../users/users.resolve';
 import { CommentsComponent } from '../comments/comments.component';
+import { TasksResolve } from './tasks.resolve';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
     resolve: {
       projects: ProjectsResolve,
       lists: ListsResolve,
-      users: UsersResolve
+      users: UsersResolve,
+      tasks: TasksResolve
     }
   }
 ];

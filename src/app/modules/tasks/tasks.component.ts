@@ -59,6 +59,7 @@ export class TasksComponent implements OnInit {
     private projectsService: ProjectsService,
   ) { }
 
+  // return class for each badge type in the tasks list
   setClass(started, status){
     let classes = {started: false, paused: false, other: false};
       if (started) {
@@ -76,6 +77,9 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit() {
+    // get tasks from service variable - created on route resolve
+    this.tasks = this.tasksService.tasks;
+
     // load resolved data
     this.activatedRoute.data.subscribe((result) => {
       this.projects = result.projects;
@@ -90,22 +94,6 @@ export class TasksComponent implements OnInit {
       satHighlight: true
     };
 
-    // load lazy tasks
-    this.loader = true;
-    this.tasksService.getAll(this.usersService.logged).subscribe(() => {
-      /* tasks from service variable */
-      this.tasks = this.tasksService.tasks;
-    },
-    (error) => {
-      this.toastService.toastTrigger({
-        message: error.error.message,
-        options: {type: 'error'}
-      });
-    },
-    () => {
-      this.loader = false;
-    });
-
     // init reactive form
     let date = new Date();
     this.taskForm = new FormGroup({
@@ -119,29 +107,31 @@ export class TasksComponent implements OnInit {
       taskAssignedTo: new FormControl('',Validators.required),
       taskDeadline: new FormControl(null,Validators.required)
     });
+    
+    // // start receive new tasks
+    // this.newTasksSubscription = this.tasksService.startGetTasks().subscribe((result) => {
+    //   if (result.taskAssignedTo == this.usersService.logged._id) this.tasks.unshift(result);
+    // });
+
+    // // start receive assigned tasks
+    // this.assignTasksSubscription =  this.tasksService.getAssignedTasks().subscribe((result) => {
+    //   if (result.taskAssignedTo == this.usersService.logged._id) {
+    //     this.tasksService.tasks.unshift(result);
+    //     this.tasksService.updateListView(result, false);
+    //   }
+    // });
 
     // start list dropdown change subscription
     this.onProjectChanges();
-    
-    // start receive new tasks
-    this.newTasksSubscription = this.tasksService.startGetTasks().subscribe((result) => {
-      if (result.taskAssignedTo == this.usersService.logged._id) this.tasks.unshift(result);
-    });
-
-    // start receive assigned tasks
-    this.assignTasksSubscription =  this.tasksService.getAssignedTasks().subscribe((result) => {
-      if (result.taskAssignedTo == this.usersService.logged._id) {
-        this.tasksService.tasks.unshift(result);
-        this.tasksService.updateListView(result, false);
-      }
-    });
   }
 
   ngOnDestroy(){
-    this.newTasksSubscription.unsubscribe();
-    this.assignTasksSubscription.unsubscribe();
+    // destroy subscriptions 
+    // this.newTasksSubscription.unsubscribe();
+    // this.assignTasksSubscription.unsubscribe();
   }
 
+  // populate lists dropdown on project change
   onProjectChanges(): void{
     this.taskForm.get('taskProject').valueChanges.subscribe((value) => {
       this.taskForm.controls.taskList.setValue('');
@@ -156,6 +146,7 @@ export class TasksComponent implements OnInit {
     });
   }
 
+  // add new task
   addTask(draft):void{
     this.taskForm.value.taskDraft = draft;
     this.tasksService.addTask(this.taskForm.value).subscribe(

@@ -8,7 +8,6 @@ import "rxjs/add/observable/of";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { UsersService } from '../users/users.service';
-import { Socket } from 'ng-socket-io';
 import { Subject } from 'rxjs/Subject';
 import { WorkmeterService } from '../workmeter/workmeter.service';
 
@@ -28,7 +27,6 @@ export class TasksService {
   constructor(
     private http: HttpClient,
     private usersService: UsersService,
-    private socket: Socket,
     private workmeterService: WorkmeterService
   ) { }
 
@@ -40,17 +38,17 @@ export class TasksService {
     });
   }
 
-  startGetTasks(): Observable<Task> {
-    return this.socket.fromEvent("tasks").map((result: Task) => {
-      return result;
-    });
-  }
+  // startGetTasks(): Observable<Task> {
+  //   return this.socket.fromEvent("tasks").map((result: Task) => {
+  //     return result;
+  //   });
+  // }
 
-  getAssignedTasks(): Observable<Task> {
-    return this.socket.fromEvent("assign").map((result: Task) => {
-      return result;
-    });
-  }
+  // getAssignedTasks(): Observable<Task> {
+  //   return this.socket.fromEvent("assign").map((result: Task) => {
+  //     return result;
+  //   });
+  // }
 
   stopGetTasks(): void {
     this.newTasksSubscription.unsubscribe();

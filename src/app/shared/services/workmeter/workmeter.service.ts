@@ -7,7 +7,6 @@ import "rxjs/add/observable/of";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { UsersService } from '../users/users.service';
-import { Socket } from 'ng-socket-io';
 import { Subject } from 'rxjs/Subject';
 
 const httpOptions = {
@@ -23,8 +22,7 @@ export class WorkmeterService {
 
   constructor(
     private http: HttpClient,
-    private usersService: UsersService,
-    private socket: Socket
+    private usersService: UsersService
   ) { }
 
   startCount(from): void{

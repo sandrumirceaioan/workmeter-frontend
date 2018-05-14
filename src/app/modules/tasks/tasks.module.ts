@@ -12,6 +12,7 @@ import { UsersResolve } from '../users/users.resolve';
 import { TasksViewComponent } from '../tasks-view/tasks-view.component';
 import { TaskResolve } from './task.resolve';
 import { TasksUpdateComponent } from '../tasks-update/tasks-update.component';
+import { TasksResolve } from './tasks.resolve';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { TasksUpdateComponent } from '../tasks-update/tasks-update.component';
     CanActivateAuthGuard,
     TasksService,
     TaskResolve,
+    TasksResolve,
     ProjectsResolve,
     ListsResolve,
     UsersResolve

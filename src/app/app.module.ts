@@ -4,9 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptor } from './shared/interceptors/request.interceptor';
-import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
-
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+// import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+// const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 /* main components */
 import { AppComponent } from './app.component';
@@ -37,8 +36,8 @@ import { AppRoutingModule } from './app.routing';
     BrowserModule,
     BrowserAnimationsModule,
     LoginModule,
-    AppRoutingModule,
-    SocketIoModule.forRoot(config)
+    AppRoutingModule
+    //SocketIoModule.forRoot(config)
   ],
   providers: [
     ToastService,
