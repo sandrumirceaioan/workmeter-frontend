@@ -3,12 +3,15 @@
           <li>
               <a routerLink="./dashboard" [routerLinkActive]="'is-active'">Dashboard</a>
             </li>
-            <li *ngIf="userAccess == 'admin' || userAccess == 'manager'">
-              <a routerLink="./projects" [routerLinkActive]="'is-active'">Projects</a>
-            </li>
             <li>
               <a routerLink="./tasks" [routerLinkActive]="'is-active'">Tasks</a>
             </li>
+            <li *ngIf="userAccess == 'admin' || userAccess == 'manager'">
+              <a routerLink="./manage" [routerLinkActive]="'is-active'">Manage</a>
+            </li>
+            <!-- <li *ngIf="userAccess == 'admin' || userAccess == 'manager'">
+              <a routerLink="./projects" [routerLinkActive]="'is-active'">Projects</a>
+            </li> -->
             <li *ngIf="userAccess == 'admin'">
               <a routerLink="./users" [routerLinkActive]="'is-active'">Users</a>
             </li>

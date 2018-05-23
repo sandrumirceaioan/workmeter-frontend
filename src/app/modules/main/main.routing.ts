@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard'},
       { path: 'dashboard', loadChildren: '../dashboard/dashboard.module#DashboardModule'},
-      { path: 'projects', loadChildren: '../projects/projects.module#ProjectsModule'},
+      { path: 'manage', loadChildren: '../manage/manage.module#ManageModule'},
       { path: 'tasks', loadChildren: '../tasks/tasks.module#TasksModule'}
     ],
     canActivate: [CanActivateAuthGuard],

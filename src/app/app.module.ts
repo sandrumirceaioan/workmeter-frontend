@@ -37,7 +37,6 @@ import { AppRoutingModule } from './app.routing';
     BrowserAnimationsModule,
     LoginModule,
     AppRoutingModule
-    //SocketIoModule.forRoot(config)
   ],
   providers: [
     ToastService,
